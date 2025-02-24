@@ -1,0 +1,9 @@
+*.key
+*.pem
+.aider*
+repos
+keys
+repos-data
+kube-config
+.env
+

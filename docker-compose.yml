@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  backendim-brain:
+    image: backendim-brain
+    build: .
+    environment:
+      - K3S_SERVER_IP=${K3S_SERVER_IP}
+      - KUBECONFIG=/home/backenduser/.kube/config-writable
+    expose:
+      - "8080"
+    ports:
+      - "80:8080"
+    volumes:
+      - repos-data:/app/repos
+      - /home/ubuntu/k3s.yaml:/home/backenduser/.kube/config-writable
+    networks:
+      - backend-net
+    command: ["sleep", "infinity"]
+
+volumes:
+  traefik_letsencrypt:
+  repos-data:
+
+networks:
+  backend-net:
+    driver: bridge
